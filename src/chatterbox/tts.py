@@ -123,7 +123,7 @@ class ChatterboxTTS:
         self.tokenizer = tokenizer
         self.device = device
         self.conds = conds
-        self.watermarker = perth.PerthImplicitWatermarker()
+        self.watermarker = perth.DummyWatermarker()
 
     @classmethod
     def from_local(cls, ckpt_dir, device) -> 'ChatterboxTTS':
@@ -176,7 +176,7 @@ class ChatterboxTTS:
 
         for fpath in ["ve.safetensors", "t3_cfg.safetensors", "s3gen.safetensors", "tokenizer.json", "conds.pt"]:
             local_path = hf_hub_download(repo_id=REPO_ID, filename=fpath)
-
+            print(local_path)
         return cls.from_local(Path(local_path).parent, device)
 
     def prepare_conditionals(self, wav_fpath, exaggeration=0.5):

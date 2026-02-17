@@ -150,7 +150,7 @@ class ChatterboxMultilingualTTS:
         self.tokenizer = tokenizer
         self.device = device
         self.conds = conds
-        self.watermarker = perth.PerthImplicitWatermarker()
+        self.watermarker = perth.DummyWatermarker()
 
     @classmethod
     def get_supported_languages(cls):
